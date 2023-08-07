@@ -1,0 +1,1207 @@
+Started GET "/" for ::1 at 2023-08-02 15:20:50 +0530
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 1 pending migration:
+
+20230802092042_devise_create_users.rb
+
+
+):
+  
+activerecord (6.1.7.4) lib/active_record/migration.rb:625:in `check_pending!'
+activerecord (6.1.7.4) lib/active_record/migration.rb:590:in `block (2 levels) in call'
+activesupport (6.1.7.4) lib/active_support/evented_file_update_checker.rb:59:in `execute'
+activerecord (6.1.7.4) lib/active_record/migration.rb:595:in `block in call'
+activerecord (6.1.7.4) lib/active_record/migration.rb:587:in `synchronize'
+activerecord (6.1.7.4) lib/active_record/migration.rb:587:in `call'
+actionpack (6.1.7.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.4) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.4) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.8) lib/rack/method_override.rb:24:in `call'
+rack (2.2.8) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.4) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.8) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.4) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.4) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.6) lib/rack/proxy.rb:87:in `call'
+railties (6.1.7.4) lib/rails/engine.rb:539:in `call'
+puma (5.6.6) lib/puma/configuration.rb:252:in `call'
+puma (5.6.6) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.6) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.6) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.6) lib/puma/server.rb:443:in `process_client'
+puma (5.6.6) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20230802092042)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230802092042"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-08-02 09:50:57.905532"], ["updated_at", "2023-08-02 09:50:57.905532"]]
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2023-08-02 15:21:00 +0530
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/railties-6.1.7.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/railties-6.1.7.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 3.1ms | Allocations: 232)
+Completed 200 OK in 11ms (Views: 3.6ms | ActiveRecord: 0.0ms | Allocations: 5243)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:23:23 +0530
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 1.3ms | Allocations: 909)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 13.7ms | Allocations: 9966)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+Hash: 962ca17b09de59f07b68
+Version: webpack 4.46.0
+Time: 237ms
+Built at: 02/08/2023 3:23:24 pm
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-db0df374dd3aa8f5ecc9.js   6.69 KiB  application  [emitted] [immutable]  application
+js/application-db0df374dd3aa8f5ecc9.js.map   3.53 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-db0df374dd3aa8f5ecc9.js js/application-db0df374dd3aa8f5ecc9.js.map
+[./app/javascript/packs/application.js] 2.79 KiB {application} [built] [failed] [1 error]
+
+ERROR in ./app/javascript/packs/application.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+Error: Cannot find package '@babel/plugin-proposal-private-methods' imported from /home/task/github_omniauth/babel-virtual-resolve-base.js
+    at new NodeError (/home/task/github_omniauth/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:203:5)
+    at packageResolve (/home/task/github_omniauth/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:873:9)
+    at moduleResolve (/home/task/github_omniauth/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:902:20)
+    at defaultResolve (/home/task/github_omniauth/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:985:15)
+    at resolve (/home/task/github_omniauth/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:999:12)
+    at resolve (/home/task/github_omniauth/node_modules/@babel/core/lib/config/files/import-meta-resolve.js:13:10)
+    at tryImportMetaResolve (/home/task/github_omniauth/node_modules/@babel/core/lib/config/files/plugins.js:137:45)
+    at resolveStandardizedNameForImport (/home/task/github_omniauth/node_modules/@babel/core/lib/config/files/plugins.js:159:19)
+    at resolveStandardizedName (/home/task/github_omniauth/node_modules/@babel/core/lib/config/files/plugins.js:168:12)
+    at loadPlugin (/home/task/github_omniauth/node_modules/@babel/core/lib/config/files/plugins.js:47:20)
+    at loadPlugin.next (<anonymous>)
+    at createDescriptor (/home/task/github_omniauth/node_modules/@babel/core/lib/config/config-descriptors.js:139:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/task/github_omniauth/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/task/github_omniauth/node_modules/gensync/index.js:291:5)
+    at /home/task/github_omniauth/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/task/github_omniauth/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/task/github_omniauth/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/task/github_omniauth/node_modules/@babel/core/lib/config/config-descriptors.js:101:41)
+    at createDescriptors.next (<anonymous>)
+    at createPluginDescriptors (/home/task/github_omniauth/node_modules/@babel/core/lib/config/config-descriptors.js:98:17)
+    at createPluginDescriptors.next (<anonymous>)
+    at /home/task/github_omniauth/node_modules/@babel/core/lib/gensync-utils/functional.js:21:23
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/task/github_omniauth/node_modules/@babel/core/lib/config/config-chain.js:347:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/task/github_omniauth/node_modules/@babel/core/lib/config/config-chain.js:314:14)
+    at chainWalker.next (<anonymous>)
+
+
+(node:29035) UnhandledPromiseRejectionWarning: Error: Cannot find package '@babel/plugin-proposal-private-methods' imported from /home/task/github_omniauth/babel-virtual-resolve-base.js
+    at new NodeError (/home/task/github_omniauth/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:203:5)
+    at packageResolve (/home/task/github_omniauth/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:873:9)
+    at moduleResolve (/home/task/github_omniauth/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:902:20)
+    at defaultResolve (/home/task/github_omniauth/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:985:15)
+    at resolve (/home/task/github_omniauth/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:999:12)
+    at resolve (/home/task/github_omniauth/node_modules/@babel/core/lib/config/files/import-meta-resolve.js:13:10)
+    at tryImportMetaResolve (/home/task/github_omniauth/node_modules/@babel/core/lib/config/files/plugins.js:137:45)
+    at resolveStandardizedNameForImport (/home/task/github_omniauth/node_modules/@babel/core/lib/config/files/plugins.js:159:19)
+    at resolveStandardizedName (/home/task/github_omniauth/node_modules/@babel/core/lib/config/files/plugins.js:168:12)
+    at loadPlugin (/home/task/github_omniauth/node_modules/@babel/core/lib/config/files/plugins.js:47:20)
+    at loadPlugin.next (<anonymous>)
+    at createDescriptor (/home/task/github_omniauth/node_modules/@babel/core/lib/config/config-descriptors.js:139:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/task/github_omniauth/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/task/github_omniauth/node_modules/gensync/index.js:291:5)
+    at /home/task/github_omniauth/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/task/github_omniauth/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/task/github_omniauth/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/task/github_omniauth/node_modules/@babel/core/lib/config/config-descriptors.js:101:41)
+    at createDescriptors.next (<anonymous>)
+    at createPluginDescriptors (/home/task/github_omniauth/node_modules/@babel/core/lib/config/config-descriptors.js:98:17)
+    at createPluginDescriptors.next (<anonymous>)
+    at /home/task/github_omniauth/node_modules/@babel/core/lib/gensync-utils/functional.js:21:23
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/task/github_omniauth/node_modules/@babel/core/lib/config/config-chain.js:347:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/task/github_omniauth/node_modules/@babel/core/lib/config/config-chain.js:314:14)
+    at chainWalker.next (<anonymous>)
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29035) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+(node:29035) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+
+  Rendered layout layouts/application.html.erb (Duration: 967.4ms | Allocations: 23352)
+Completed 200 OK in 978ms (Views: 968.9ms | ActiveRecord: 0.5ms | Allocations: 34966)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:23:26 +0530
+Processing by Users::OmniauthCallbacksController#failure as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 490)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:23:26 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 390)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1551)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 4591)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.0ms | Allocations: 5215)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:23:28 +0530
+Processing by Users::OmniauthCallbacksController#failure as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 343)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:23:28 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 389)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1543)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 4568)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.0ms | Allocations: 5186)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:23:29 +0530
+Processing by Users::OmniauthCallbacksController#failure as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 345)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:23:29 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 389)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1543)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 4569)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.0ms | Allocations: 5195)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:23:29 +0530
+Processing by Users::OmniauthCallbacksController#failure as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 345)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:23:29 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 389)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1543)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 4569)
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.0ms | Allocations: 5195)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:23:29 +0530
+Processing by Users::OmniauthCallbacksController#failure as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 343)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:23:29 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 389)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1543)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | Allocations: 4568)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.0ms | Allocations: 5187)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:23:30 +0530
+Processing by Users::OmniauthCallbacksController#failure as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 342)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:23:30 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 389)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1543)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 4581)
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.0ms | Allocations: 5198)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:23:30 +0530
+Processing by Users::OmniauthCallbacksController#failure as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms | Allocations: 342)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:23:30 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 389)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1543)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 4568)
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.0ms | Allocations: 5185)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:23:31 +0530
+Processing by Users::OmniauthCallbacksController#failure as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 342)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:23:31 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 14.5ms | Allocations: 1051)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 15.9ms | Allocations: 2205)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 19.1ms | Allocations: 5124)
+Completed 200 OK in 20ms (Views: 19.6ms | ActiveRecord: 0.0ms | Allocations: 5742)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:25:23 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 1.3ms | Allocations: 916)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 8.5ms | Allocations: 5971)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 24.9ms | Allocations: 10739)
+Completed 200 OK in 42ms (Views: 28.4ms | ActiveRecord: 0.3ms | Allocations: 19908)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:25:24 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 390)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1552)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 4579)
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.0ms | Allocations: 5211)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:25:27 +0530
+Started GET "/users/auth/github/callback?code=09c18bbcef419d9ae110&state=4badb325b3ee40fffc660bb643a2dfbc92a5321ed2c116cd" for ::1 at 2023-08-02 15:25:27 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"09c18bbcef419d9ae110", "state"=>"4badb325b3ee40fffc660bb643a2dfbc92a5321ed2c116cd"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 199ms (ActiveRecord: 0.1ms | Allocations: 4140)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:25:29 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.8ms | Allocations: 231)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.7ms | Allocations: 376)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 4.3ms | Allocations: 2422)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 5406)
+Completed 200 OK in 12ms (Views: 10.9ms | ActiveRecord: 0.0ms | Allocations: 6778)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:25:41 +0530
+Started GET "/users/auth/github/callback?code=12301c0f9bbe410b0cf3&state=84e2726dfdf159a8de0fd46ae89b47726183bc3465238eb8" for ::1 at 2023-08-02 15:25:41 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"12301c0f9bbe410b0cf3", "state"=>"84e2726dfdf159a8de0fd46ae89b47726183bc3465238eb8"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 185ms (ActiveRecord: 0.2ms | Allocations: 2053)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:25:43 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1557)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 4582)
+Completed 200 OK in 9ms (Views: 3.2ms | ActiveRecord: 0.0ms | Allocations: 5158)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:30:59 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 12.6ms | Allocations: 920)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 17.9ms | Allocations: 6066)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 21.2ms | Allocations: 10839)
+Completed 200 OK in 42ms (Views: 25.2ms | ActiveRecord: 0.2ms | Allocations: 20042)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:31:01 +0530
+Started GET "/users/auth/github/callback?code=4076809cd1bf73a27455&state=0aaa74e8315d9204db41730bd0e91e5fc8a4ba7142567d37" for ::1 at 2023-08-02 15:31:02 +0530
+Processing by Users::OmniauthCallbacksController#failure as HTML
+  Parameters: {"code"=>"4076809cd1bf73a27455", "state"=>"0aaa74e8315d9204db41730bd0e91e5fc8a4ba7142567d37"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 422)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 15:31:03 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.7ms | Allocations: 390)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1551)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 4577)
+Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.0ms | Allocations: 5228)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:31:13 +0530
+Started GET "/users/auth/github/callback?code=dfc2aa5851da551f189f&state=888c6cc150a435755e8970e5bdb2dcf8320ede6e24a8995b" for ::1 at 2023-08-02 15:31:13 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"dfc2aa5851da551f189f", "state"=>"888c6cc150a435755e8970e5bdb2dcf8320ede6e24a8995b"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 189ms (ActiveRecord: 0.1ms | Allocations: 3409)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:31:15 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.6ms | Allocations: 231)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 340)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 4.1ms | Allocations: 2383)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 5367)
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.0ms | Allocations: 6740)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:31:21 +0530
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:31:21 +0530
+Started GET "/users/auth/github/callback?code=9c7c444c36873c6cbd68&state=096097b78f77e46a5bec2f86da0e3b3707f78e788f1c7cb4" for ::1 at 2023-08-02 15:31:22 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"9c7c444c36873c6cbd68", "state"=>"096097b78f77e46a5bec2f86da0e3b3707f78e788f1c7cb4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 192ms (ActiveRecord: 0.2ms | Allocations: 2053)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:31:24 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1557)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | Allocations: 4583)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 5161)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:32:35 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 4578)
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.0ms | Allocations: 5153)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:35:44 +0530
+Started GET "/users/auth/github/callback?code=2c72290a719cd3b103b5&state=f6d03b91cd7931172b3289f11fb4e82f9a8087b4970a9546" for ::1 at 2023-08-02 15:35:45 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"2c72290a719cd3b103b5", "state"=>"f6d03b91cd7931172b3289f11fb4e82f9a8087b4970a9546"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 194ms (ActiveRecord: 0.1ms | Allocations: 2077)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:35:46 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 4579)
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.0ms | Allocations: 5156)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:36:20 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 235)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 1.0ms | Allocations: 817)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 7.1ms | Allocations: 6190)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 21.6ms | Allocations: 10958)
+Completed 200 OK in 38ms (Views: 24.6ms | ActiveRecord: 0.8ms | Allocations: 19872)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:36:22 +0530
+Started GET "/users/auth/github/callback?code=4593c9e80f4d8ef89f92&state=e22d740177c5d4aa656f34fbf4131ba59aaefdfda480f4eb" for ::1 at 2023-08-02 15:36:22 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"4593c9e80f4d8ef89f92", "state"=>"e22d740177c5d4aa656f34fbf4131ba59aaefdfda480f4eb"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 10181ms (ActiveRecord: 0.4ms | Allocations: 59907)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:36:34 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 331)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1561)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 4588)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms | Allocations: 5172)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:37:59 +0530
+Started GET "/users/auth/github/callback?code=8694fd9f77b54c824406&state=5a4278b04167a4b04dfded76953642ea53666a42cd068abe" for ::1 at 2023-08-02 15:38:04 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"8694fd9f77b54c824406", "state"=>"5a4278b04167a4b04dfded76953642ea53666a42cd068abe"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 25710ms (ActiveRecord: 1.0ms | Allocations: 43190)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:38:32 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.4ms | Allocations: 232)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 1.8ms | Allocations: 817)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 8.9ms | Allocations: 4084)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 17.0ms | Allocations: 8848)
+Completed 200 OK in 22ms (Views: 20.8ms | ActiveRecord: 0.0ms | Allocations: 11625)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:39:08 +0530
+Started GET "/users/auth/github/callback?code=aa04d0c41f64e7d48de4&state=5404f32b5a9ae013e4a29743b6f53a830e0a93bc7609257a" for ::1 at 2023-08-02 15:46:31 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"aa04d0c41f64e7d48de4", "state"=>"5404f32b5a9ae013e4a29743b6f53a830e0a93bc7609257a"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/models/user.rb:9:in `from_omniauth'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 178ms (ActiveRecord: 0.3ms | Allocations: 7163)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:46:32 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 344)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1579)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 4565)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 5388)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:46:34 +0530
+Started GET "/users/auth/github/callback?code=fb82dec71f74e529c916&state=a101f9bee36f45fdb6d58a1906d95508fcc0a3a78e361d56" for ::1 at 2023-08-02 15:46:35 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"fb82dec71f74e529c916", "state"=>"a101f9bee36f45fdb6d58a1906d95508fcc0a3a78e361d56"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 175ms (ActiveRecord: 0.1ms | Allocations: 2053)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:46:37 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 4578)
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 5153)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:47:14 +0530
+Started GET "/users/auth/github/callback?code=5c8288eb885ba5f002d0&state=c4ebf183a29a9d097e4cbb3ad281f217234e44cb7fd5263e" for ::1 at 2023-08-02 15:47:15 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"5c8288eb885ba5f002d0", "state"=>"c4ebf183a29a9d097e4cbb3ad281f217234e44cb7fd5263e"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 178ms (ActiveRecord: 0.2ms | Allocations: 2076)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:47:16 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 4579)
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.0ms | Allocations: 5156)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:49:25 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.5ms | Allocations: 223)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 718)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 3.8ms | Allocations: 2904)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 6415)
+Completed 200 OK in 10ms (Views: 8.8ms | ActiveRecord: 0.0ms | Allocations: 8381)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:49:30 +0530
+Started GET "/users/auth/github/callback?code=7401fd3ecae35b0d9437&state=0690756c09a2d670c868bb4643f1395ed486b292edf102dc" for ::1 at 2023-08-02 15:49:31 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"7401fd3ecae35b0d9437", "state"=>"0690756c09a2d670c868bb4643f1395ed486b292edf102dc"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 179ms (ActiveRecord: 0.2ms | Allocations: 2053)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:49:33 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 331)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1561)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 4791)
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 5367)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:49:47 +0530
+Started GET "/users/auth/github/callback?code=360384843e0d64060521&state=049b5ac9a82fa9fb258031bbefab902cabded31b07c42d7c" for ::1 at 2023-08-02 15:49:48 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"360384843e0d64060521", "state"=>"049b5ac9a82fa9fb258031bbefab902cabded31b07c42d7c"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/models/user.rb:9:in `from_omniauth'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 10235ms (ActiveRecord: 1.9ms | Allocations: 17309)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:49:59 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 344)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1579)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 4779)
+Completed 200 OK in 3ms (Views: 3.0ms | ActiveRecord: 0.0ms | Allocations: 5595)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:50:05 +0530
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 235)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 1.0ms | Allocations: 817)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 6.8ms | Allocations: 6190)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 22.3ms | Allocations: 11262)
+Completed 200 OK in 39ms (Views: 26.1ms | ActiveRecord: 0.3ms | Allocations: 20271)
+
+
+Started POST "/users/sign_in" for ::1 at 2023-08-02 15:50:08 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 528)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 471)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 2.2ms | Allocations: 2203)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 5382)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.0ms | Allocations: 6770)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:50:10 +0530
+Started GET "/users/auth/github/callback?code=23915eecb024fef4acd4&state=19ed54d9985c7e91f56bb67209f9c38e3ad3c967329ece16" for ::1 at 2023-08-02 15:50:11 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"23915eecb024fef4acd4", "state"=>"19ed54d9985c7e91f56bb67209f9c38e3ad3c967329ece16"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 25098ms (ActiveRecord: 0.7ms | Allocations: 430095)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:50:37 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 331)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1563)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 4801)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.0ms | Allocations: 5384)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:52:10 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1554)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 4785)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.0ms | Allocations: 5371)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:52:14 +0530
+Started GET "/users/auth/github/callback?code=7a50e83286c82c32d674&state=0d0569efb3e1e69569eca3dabe1543fa83c01d4dad4e15ec" for ::1 at 2023-08-02 15:52:14 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"7a50e83286c82c32d674", "state"=>"0d0569efb3e1e69569eca3dabe1543fa83c01d4dad4e15ec"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 25879ms (ActiveRecord: 0.3ms | Allocations: 6536)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:52:41 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 344)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1632)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | Allocations: 4832)
+Completed 200 OK in 8ms (Views: 3.8ms | ActiveRecord: 0.4ms | Allocations: 11226)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:52:50 +0530
+Started GET "/users/auth/github/callback?code=806d5f50cf20ecdc6b3e&state=29aefe2308b5e103172338c982377f1eb6a6aeb5ea130cb2" for ::1 at 2023-08-02 15:52:50 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"806d5f50cf20ecdc6b3e", "state"=>"29aefe2308b5e103172338c982377f1eb6a6aeb5ea130cb2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ (byebug):1:in `from_omniauth'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 33586ms (ActiveRecord: 0.5ms | Allocations: 11040)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:53:25 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 4783)
+Completed 200 OK in 9ms (Views: 8.9ms | ActiveRecord: 0.0ms | Allocations: 5359)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:53:56 +0530
+Started GET "/users/auth/github/callback?code=07615564a3bda10585a3&state=117ae9d8632031f5021da6956cbd9a2ad532c6465b044a3d" for ::1 at 2023-08-02 15:53:56 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"07615564a3bda10585a3", "state"=>"117ae9d8632031f5021da6956cbd9a2ad532c6465b044a3d"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 11057ms (ActiveRecord: 0.6ms | Allocations: 7048)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:54:09 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 4785)
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 5364)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:54:23 +0530
+Started GET "/users/auth/github/callback?code=ce0f81ab594fe393dc23&state=cbb5c818957e112b2fff95163d8b3c98600ff7f41c523a21" for ::1 at 2023-08-02 15:54:23 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"ce0f81ab594fe393dc23", "state"=>"cbb5c818957e112b2fff95163d8b3c98600ff7f41c523a21"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 14731ms (ActiveRecord: 0.3ms | Allocations: 12064)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:54:39 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 4783)
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.0ms | Allocations: 5358)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:56:28 +0530
+Started GET "/users/auth/github/callback?code=30977d01378b1443670c&state=d44b15a669d6729c1d219e1db60fe94c323bd8320989e8bc" for ::1 at 2023-08-02 15:56:45 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"30977d01378b1443670c", "state"=>"d44b15a669d6729c1d219e1db60fe94c323bd8320989e8bc"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/models/user.rb:10:in `from_omniauth'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 16889ms (ActiveRecord: 3.1ms | Allocations: 12330)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:57:03 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 344)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1579)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 4780)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 5601)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:57:50 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.6ms | Allocations: 223)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 718)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 3.8ms | Allocations: 2903)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | Allocations: 6109)
+Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.0ms | Allocations: 8059)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:57:58 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/auth/github/callback?code=92fa3c2fbaea6a0874e8&state=bbba446cf76c72a847037f2aab619e8d54dc21c9d686c8bf" for ::1 at 2023-08-02 15:57:58 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"92fa3c2fbaea6a0874e8", "state"=>"bbba446cf76c72a847037f2aab619e8d54dc21c9d686c8bf"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 11712ms (ActiveRecord: 1.6ms | Allocations: 44164)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:58:11 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.7ms | Allocations: 232)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 1.1ms | Allocations: 817)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 6.8ms | Allocations: 4085)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 16.2ms | Allocations: 8849)
+Completed 200 OK in 21ms (Views: 19.4ms | ActiveRecord: 0.0ms | Allocations: 11627)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 15:58:14 +0530
+Started GET "/users/auth/github/callback?code=1017a1c1cfab0205cbbf&state=1e178dfcae314b0a6cc1ba1318ed219a2d26afe752daae9f" for ::1 at 2023-08-02 15:58:14 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"1017a1c1cfab0205cbbf", "state"=>"1e178dfcae314b0a6cc1ba1318ed219a2d26afe752daae9f"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 8994ms (ActiveRecord: 0.2ms | Allocations: 7976)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 15:58:25 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 331)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1561)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 4587)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms | Allocations: 5167)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 16:00:08 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 235)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 1.0ms | Allocations: 817)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 6.4ms | Allocations: 6190)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 20.9ms | Allocations: 10958)
+Completed 200 OK in 36ms (Views: 23.6ms | ActiveRecord: 0.3ms | Allocations: 19881)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 16:00:10 +0530
+Started GET "/users/auth/github/callback?code=9e6fb918306896360be4&state=91bba2c163cd7318735c207fac3d0b27cea9ebf009f53cbc" for ::1 at 2023-08-02 16:00:11 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"9e6fb918306896360be4", "state"=>"91bba2c163cd7318735c207fac3d0b27cea9ebf009f53cbc"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 4294ms (ActiveRecord: 0.2ms | Allocations: 35338)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 16:00:16 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 331)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1561)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | Allocations: 4588)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 5172)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 16:00:19 +0530
+Started GET "/users/auth/github/callback?code=9a937800df38be2f3939&state=410c00ae1ee28e5e185071e0416d47cdb2b7a9d85d47bf94" for ::1 at 2023-08-02 16:00:19 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"9a937800df38be2f3939", "state"=>"410c00ae1ee28e5e185071e0416d47cdb2b7a9d85d47bf94"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 2214ms (ActiveRecord: 0.3ms | Allocations: 7472)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 16:00:23 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 4578)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms | Allocations: 5153)
+
+
+Started POST "/users" for ::1 at 2023-08-02 16:00:26 +0530
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.9ms | Allocations: 928)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 3.5ms | Allocations: 3581)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 6544)
+Completed 422 Unprocessable Entity in 11ms (Views: 6.9ms | ActiveRecord: 0.0ms | Allocations: 9900)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 16:00:30 +0530
+Started GET "/users/auth/github/callback?code=e755e803bf7edc79d108&state=593581c7b237597a52e483c6b3b4cdcd19ecb459e7876851" for ::1 at 2023-08-02 16:00:30 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"e755e803bf7edc79d108", "state"=>"593581c7b237597a52e483c6b3b4cdcd19ecb459e7876851"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 4189ms (ActiveRecord: 0.3ms | Allocations: 7591)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 16:00:36 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 4578)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms | Allocations: 5153)
+
+
+Started GET "/users/sign_in" for ::1 at 2023-08-02 18:15:32 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 1.2ms | Allocations: 916)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 6.5ms | Allocations: 5971)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 24.4ms | Allocations: 10739)
+Completed 200 OK in 41ms (Views: 27.6ms | ActiveRecord: 0.2ms | Allocations: 19839)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 18:15:34 +0530
+Started GET "/users/auth/github/callback?code=c4ac56e4028805d260ac&state=89c9e9c329b6a0358c12e45407a27f18e6cfd52ad50afa62" for ::1 at 2023-08-02 18:15:34 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"c4ac56e4028805d260ac", "state"=>"89c9e9c329b6a0358c12e45407a27f18e6cfd52ad50afa62"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 19279ms (ActiveRecord: 0.2ms | Allocations: 34952)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 18:15:54 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 231)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 376)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 2423)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 5409)
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.0ms | Allocations: 6789)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 18:16:01 +0530
+Started GET "/users/auth/github/callback?code=a82669ace5fbbf024a0c&state=afcecf91261cfbcec5cc90dda8abc76155f3c7fdaed90f21" for ::1 at 2023-08-02 18:16:01 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"a82669ace5fbbf024a0c", "state"=>"afcecf91261cfbcec5cc90dda8abc76155f3c7fdaed90f21"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 6954ms (ActiveRecord: 0.1ms | Allocations: 8136)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 18:16:09 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1557)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 4583)
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 5161)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 18:16:23 +0530
+Started GET "/users/auth/github/callback?code=3b3e2616ee1f78097afe&state=22d781604d044e9e51a704a781270fccf0bc5ed106b4c9c2" for ::1 at 2023-08-02 18:16:24 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"3b3e2616ee1f78097afe", "state"=>"22d781604d044e9e51a704a781270fccf0bc5ed106b4c9c2"}
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/models/user.rb:10:in `from_omniauth'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:10:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 13066ms (ActiveRecord: 1.7ms | Allocations: 10375)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 18:16:38 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 344)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1579)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 4564)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms | Allocations: 5383)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 18:17:13 +0530
+Started GET "/users/auth/github/callback?code=abe39d3d2dda6bd031a0&state=2a5403937f01d95ca2220253a1b65f3fef5257123382ed1e" for ::1 at 2023-08-02 18:17:13 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"abe39d3d2dda6bd031a0", "state"=>"2a5403937f01d95ca2220253a1b65f3fef5257123382ed1e"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/models/user.rb:9:in `from_omniauth'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 189ms (ActiveRecord: 0.7ms | Allocations: 7688)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 18:17:14 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 344)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1579)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 4564)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.0ms | Allocations: 5385)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 18:17:37 +0530
+Started GET "/users/auth/github/callback?code=d128ab2b5703abbd1752&state=c8b5b29c4931b4ffb21dc115681aaa12aba9a8daed6f6a10" for ::1 at 2023-08-02 18:17:38 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"d128ab2b5703abbd1752", "state"=>"c8b5b29c4931b4ffb21dc115681aaa12aba9a8daed6f6a10"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 184ms (ActiveRecord: 0.1ms | Allocations: 2053)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 18:17:39 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 4578)
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.0ms | Allocations: 5153)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 18:18:07 +0530
+Started GET "/users/auth/github/callback?code=1c232a44a9ed0d17a904&state=8ac2b91b609771ccea5f20abab23b81f9154f7a9552fe9dd" for ::1 at 2023-08-02 18:18:08 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"1c232a44a9ed0d17a904", "state"=>"8ac2b91b609771ccea5f20abab23b81f9154f7a9552fe9dd"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 188ms (ActiveRecord: 0.2ms | Allocations: 2053)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 18:18:09 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | Allocations: 4578)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 5153)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 18:18:18 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 4578)
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.0ms | Allocations: 5153)
+
+
+Started POST "/users/auth/github" for ::1 at 2023-08-02 18:18:22 +0530
+Started GET "/users/auth/github/callback?code=2d144cd3556ef2be17f3&state=ad3c5586535d162df80c4d7f12c5f1026dab515b8840e2fd" for ::1 at 2023-08-02 18:18:23 +0530
+Processing by Users::OmniauthCallbacksController#github as HTML
+  Parameters: {"code"=>"2d144cd3556ef2be17f3", "state"=>"ad3c5586535d162df80c4d7f12c5f1026dab515b8840e2fd"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `from_omniauth'
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 193ms (ActiveRecord: 0.1ms | Allocations: 2053)
+
+
+Started GET "/users/sign_up" for ::1 at 2023-08-02 18:18:24 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 45)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 329)
+  Rendered /home/task/.rvm/gems/ruby-2.6.5/gems/devise-4.9.2/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1553)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | Allocations: 4579)
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.0ms | Allocations: 5158)
+
+
